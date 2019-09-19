@@ -35,7 +35,7 @@ export default function UpdateMovie(props) {
   };
 
   return (
-    <div className='update-form'>
+    <div className='form'>
       <h2>Update Movie</h2>
       <form onSubmit={handleSubmit}>
         <label>
