@@ -68,6 +68,8 @@ export default function UpdateMovie(props) {
             value={movie.metascore}
           />
         </label>
+        <p>Actors:</p>
+        {movie.stars && movie.stars.map(el => <input type='text' value={el} />)}
         {/* <input
           type='text'
           name='firststar'
@@ -86,7 +88,7 @@ export default function UpdateMovie(props) {
           onChange={handleChange}
           placeholder='...third star'
         /> */}
-        <button>Update Movie</button>
+        <button className='button'>Update Movie</button>
       </form>
     </div>
   );

@@ -1,8 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Cutive+Mono&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   background-color: #f2f2f2;
+  font-family: 'Cutive Mono', monospace;
+  line-height: 1.5;
+  color: black;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+h4,
+p,
+a,
+label {
+  font-size: 1.8rem;
+}
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
 .movie-card {
@@ -13,13 +55,14 @@ body {
   padding: 1rem;
   cursor: pointer;
   position: relative;
-  margin: 1rem auto;
+  margin: 1rem 1rem;
+  width: 300px;
 }
 
-.movie-director {
+/* .movie-director {
   padding: 4px 0;
-  font-size: 0.8rem;
-}
+  font-size: 1.8rem;
+} */
 
 .saved-list {
   background-color: #fff;
@@ -43,36 +86,50 @@ body {
 .saved-movie {
   margin: 0 10px;
 }
+
 .saved-active {
-  color: blue;
+  /* color: blue; */
   border: 1px solid grey;
   padding: 5px;
 }
+
 .save-wrapper {
-  position: relative;
+  /* position: relative; */
   width: 75%;
   margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.save-button {
-  position: absolute;
-  top: 25px;
-  right: 25px;
-  border: 1px solid grey;
+
+.button {
+  /* position: absolute; */
+  /* top: 25px;
+  right: 25px; */
+  border: 0;
+  box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12),
+    0 2px 4px rgba(0, 0, 0, 0.24);
   padding: 5px 10px;
-  background-color: lightseagreen;
+  /* background-color: lightseagreen; */
+  background-color: #fff;
+  font-family: inherit;
+  font-size: 1.8rem;
+  margin: 15px 0;
+  align-self: center;
 }
-.save-button:hover {
-  background-color: green;
-  color: white;
+
+.button:hover {
+  /* background-color: green; */
+  background-color: silver;
 }
 
 .home-button {
   padding: 5px 10px;
-  background-color: lightskyblue;
+  /* background-color: lightskyblue; */
 }
 
 .movie-warning {
-  color: red;
+  /* color: red; */
   text-align: center;
 }
 
@@ -92,6 +149,36 @@ body {
 }
 
 form {
+  width: 60%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+}
+
+label {
+  margin: 5px 0;
+  display: inline-block;
+}
+
+input {
+  padding: 2px 1%;
+}
+
+.btn-add {
+  width: 100px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

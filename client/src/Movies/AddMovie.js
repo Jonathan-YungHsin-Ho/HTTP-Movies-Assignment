@@ -85,7 +85,7 @@ export default function AddMovie(props) {
             placeholder='...third star'
           />
         </label>
-        <button>Add Movie</button>
+        <button className='button'>Add Movie</button>
       </form>
     </div>
   );

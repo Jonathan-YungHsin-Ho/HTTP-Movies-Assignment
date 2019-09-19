@@ -23,11 +23,11 @@ const App = () => {
   };
 
   return (
-    <>
+    <div className='wrapper'>
       <SavedList list={savedList} />
-      <div>
-        <Link to='/add-movie'>Add Movie</Link>
-      </div>
+      <Link to='/add-movie'>
+        <div className='button'>Add Movie</div>
+      </Link>
       <Route
         exact
         path='/'
@@ -62,7 +62,7 @@ const App = () => {
           return <AddMovie {...props} setMovies={setMovies} />;
         }}
       />
-    </>
+    </div>
   );
 };
 
