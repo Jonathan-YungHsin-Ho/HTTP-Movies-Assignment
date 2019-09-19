@@ -10,14 +10,13 @@ const App = () => {
   const [savedList, setSavedList] = useState([]);
   const [movies, setMovies] = useState({});
 
-  useEffect(
-    () =>
-      axios
-        .get('http://localhost:5000/api/movies')
-        .then(res => setMovies(res.data))
-        .catch(err => console.log(err.response)),
-    [],
-  );
+  useEffect(() => {
+    axios
+      .get('http://localhost:5000/api/movies')
+      .then(res => setMovies(res.data))
+      .catch(err => console.log(err.response));
+    console.log('App useEffect axios get');
+  }, []);
 
   const addToSavedList = movie => {
     setSavedList([...savedList, movie]);
