@@ -15,7 +15,6 @@ const App = () => {
       .get('http://localhost:5000/api/movies')
       .then(res => setMovies(res.data))
       .catch(err => console.log(err.response));
-    console.log('App useEffect axios get');
   }, []);
 
   const addToSavedList = movie => {
@@ -40,6 +39,7 @@ const App = () => {
               {...props}
               addToSavedList={addToSavedList}
               setMovies={setMovies}
+              movies={movies}
             />
           );
         }}
@@ -52,6 +52,7 @@ const App = () => {
           );
         }}
       />
+      <Route path='/add-movie' />
     </>
   );
 };

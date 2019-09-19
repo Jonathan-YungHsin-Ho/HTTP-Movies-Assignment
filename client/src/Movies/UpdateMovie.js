@@ -22,10 +22,13 @@ export default function UpdateMovie(props) {
       .put(`http://localhost:5000/api/movies/${movie.id}`, movie)
       .then(res => {
         console.log(res.data);
-        // props.setMovies(res.data);
-        axios
-          .get('http://localhost:5000/api/movies')
-          .then(res => props.setMovies(res.data));
+        props.setMovies([
+          ...props.movies.filter(el => el.id !== movie.id),
+          res.data,
+        ]);
+        // axios
+        //   .get('http://localhost:5000/api/movies')
+        //   .then(res => props.setMovies(res.data));
         props.history.push(`/movies/${movie.id}`);
       })
       .catch(err => console.log(err));
