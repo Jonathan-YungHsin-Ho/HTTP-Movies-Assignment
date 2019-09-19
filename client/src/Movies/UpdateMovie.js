@@ -6,9 +6,10 @@ export default function UpdateMovie(props) {
 
   useEffect(() => {
     if (props.movies.length > 0) {
-      setMovie(
-        props.movies.find(movie => `${movie.id} === props.match.params.id)`),
+      const movieToUpdate = props.movies.find(
+        movie => `${movie.id}` === props.match.params.id,
       );
+      setMovie(movieToUpdate);
     }
   }, [props.match.params.id, props.movies]);
 
@@ -20,9 +21,8 @@ export default function UpdateMovie(props) {
     axios
       .put(`http://localhost:5000/api/movies/${movie.id}`, movie)
       .then(res => {
-        console.log(res.data);
         props.setMovies(res.data);
-        props.history.push(`/movies/${movie.id}`);
+        props.history.push(`/`);
       })
       .catch(err => console.log(err));
   };

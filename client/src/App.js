@@ -26,19 +26,23 @@ const App = () => {
   return (
     <>
       <SavedList list={savedList} />
-      {movies && (
-        <Route
-          exact
-          path='/'
-          render={props => {
-            return <MovieList {...props} movies={movies} />;
-          }}
-        />
-      )}
+      <Route
+        exact
+        path='/'
+        render={props => {
+          return <MovieList {...props} movies={movies} />;
+        }}
+      />
       <Route
         path='/movies/:id'
         render={props => {
-          return <Movie {...props} addToSavedList={addToSavedList} />;
+          return (
+            <Movie
+              {...props}
+              addToSavedList={addToSavedList}
+              setMovies={setMovies}
+            />
+          );
         }}
       />
       <Route
