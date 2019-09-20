@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function AddMovie(props) {
@@ -8,10 +8,9 @@ export default function AddMovie(props) {
   const handleChange = e =>
     setMovie({ ...movie, [e.target.name]: e.target.value });
 
-  const handleChangeArr = e => {
-    setStars([...stars, e.target.value]);
-    setMovie({ ...movie, stars: stars });
-  };
+  const handleChangeArr = e => setStars([...stars, e.target.value]);
+
+  useEffect(() => setMovie({ ...movie, stars: stars }), [stars]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -20,6 +19,7 @@ export default function AddMovie(props) {
       .then(res => {
         console.log(res);
         props.setMovies(res.data);
+        props.history.push('/');
       })
       .catch(err => console.log(err));
   };

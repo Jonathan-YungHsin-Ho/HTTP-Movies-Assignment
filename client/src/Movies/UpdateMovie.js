@@ -16,6 +16,8 @@ export default function UpdateMovie(props) {
   const handleChange = e =>
     setMovie({ ...movie, [e.target.name]: e.target.value });
 
+  const handleChangeActor = e => {};
+
   const handleSubmit = e => {
     e.preventDefault();
     axios
@@ -69,7 +71,15 @@ export default function UpdateMovie(props) {
           />
         </label>
         <p>Actors:</p>
-        {movie.stars && movie.stars.map(el => <input type='text' value={el} />)}
+        {movie.stars &&
+          movie.stars.map(el => (
+            <input
+              type='text'
+              value={el}
+              placeholder='...actor'
+              onChange={handleChangeActor}
+            />
+          ))}
         {/* <input
           type='text'
           name='firststar'
