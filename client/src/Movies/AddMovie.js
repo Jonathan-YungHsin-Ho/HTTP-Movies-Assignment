@@ -4,11 +4,18 @@ import axios from 'axios';
 export default function AddMovie(props) {
   const [movie, setMovie] = useState({});
   const [stars, setStars] = useState([]);
+  const [firstStar, setFirstStar] = useState('');
+  const [secondStar, setSecondStar] = useState('');
+  const [thirdStar, setThirdStar] = useState('');
 
   const handleChange = e =>
     setMovie({ ...movie, [e.target.name]: e.target.value });
 
-  const handleChangeArr = e => setStars([...stars, e.target.value]);
+  // const handleChangeArr = e => setStars([...stars]);
+
+  useEffect(() => {
+    setStars([firstStar, secondStar, thirdStar]);
+  }, [firstStar, secondStar, thirdStar]);
 
   useEffect(() => setMovie({ ...movie, stars: stars }), [stars]);
 
@@ -63,7 +70,8 @@ export default function AddMovie(props) {
           <input
             type='text'
             name='firststar'
-            onChange={handleChangeArr}
+            // onChange={handleChangeArr}
+            onChange={e => setFirstStar(e.target.value)}
             placeholder='...first star'
           />
         </label>
@@ -72,7 +80,8 @@ export default function AddMovie(props) {
           <input
             type='text'
             name='secondstar'
-            onChange={handleChangeArr}
+            // onChange={handleChangeArr}
+            onChange={e => setSecondStar(e.target.value)}
             placeholder='...second star'
           />
         </label>
@@ -81,7 +90,8 @@ export default function AddMovie(props) {
           <input
             type='text'
             name='thirdstar'
-            onChange={handleChangeArr}
+            // onChange={handleChangeArr}
+            onChange={e => setThirdStar(e.target.value)}
             placeholder='...third star'
           />
         </label>

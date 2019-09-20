@@ -3,12 +3,14 @@ import axios from 'axios';
 
 export default function UpdateMovie(props) {
   const [movie, setMovie] = useState({});
+  const [stars, setStars] = useState([]);
 
   useEffect(() => {
     if (props.movies.length > 0) {
       const movieToUpdate = props.movies.find(
         movie => `${movie.id}` === props.match.params.id,
       );
+      // setStars(movieToUpdate.stars);
       setMovie(movieToUpdate);
     }
   }, [props.match.params.id, props.movies]);
@@ -16,7 +18,11 @@ export default function UpdateMovie(props) {
   const handleChange = e =>
     setMovie({ ...movie, [e.target.name]: e.target.value });
 
-  const handleChangeActor = e => {};
+  // const handleChangeActor = e => setStars([...stars, e.target.value]);
+
+  // useEffect(() => {
+  //   setMovie({ ...movie, stars: stars });
+  // }, [stars]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -66,37 +72,37 @@ export default function UpdateMovie(props) {
             type='text'
             name='metascore'
             onChange={handleChange}
-            placeholder='...metascore'
+            placeholder={'...metascore'}
             value={movie.metascore}
           />
         </label>
-        <p>Actors:</p>
-        {movie.stars &&
-          movie.stars.map(el => (
+        {/* <p>Actors:</p> */}
+        {/* {stars &&
+          stars.map(el => (
             <input
               type='text'
-              value={el}
+              // value={el}
               placeholder='...actor'
               onChange={handleChangeActor}
             />
-          ))}
+          ))} */}
         {/* <input
           type='text'
           name='firststar'
-          onChange={handleChange}
-          placeholder='...first star'
+          onChange={handleChangeActor}
+          placeholder={stars[0]}
         />
         <input
           type='text'
           name='secondstar'
-          onChange={handleChange}
-          placeholder='...second star'
+          onChange={handleChangeActor}
+          placeholder={stars[1]}
         />
         <input
           type='text'
           name='thirdstar'
-          onChange={handleChange}
-          placeholder='...third star'
+          onChange={handleChangeActor}
+          placeholder={stars[2]}
         /> */}
         <button className='button'>Update Movie</button>
       </form>
