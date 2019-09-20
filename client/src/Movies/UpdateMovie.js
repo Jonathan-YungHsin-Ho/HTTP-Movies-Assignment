@@ -4,13 +4,19 @@ import axios from 'axios';
 export default function UpdateMovie(props) {
   const [movie, setMovie] = useState({});
   const [stars, setStars] = useState([]);
+  const [firstStar, setFirstStar] = useState('');
+  const [secondStar, setSecondStar] = useState('');
+  const [thirdStar, setThirdStar] = useState('');
 
   useEffect(() => {
     if (props.movies.length > 0) {
       const movieToUpdate = props.movies.find(
         movie => `${movie.id}` === props.match.params.id,
       );
-      // setStars(movieToUpdate.stars);
+      setStars(movieToUpdate.stars);
+      setFirstStar(movieToUpdate.stars[0]);
+      setSecondStar(movieToUpdate.stars[1]);
+      setThirdStar(movieToUpdate.stars[2]);
       setMovie(movieToUpdate);
     }
   }, [props.match.params.id, props.movies]);
@@ -19,6 +25,17 @@ export default function UpdateMovie(props) {
     setMovie({ ...movie, [e.target.name]: e.target.value });
 
   // const handleChangeActor = e => setStars([...stars, e.target.value]);
+
+  useEffect(() => {
+    setStars([firstStar, secondStar, thirdStar]);
+    console.log(stars);
+    console.log(movie);
+  }, [firstStar, secondStar, thirdStar]);
+
+  const handleSetActors = e => {
+    e.preventDefault();
+    setMovie({ ...movie, stars: stars });
+  };
 
   // useEffect(() => {
   //   setMovie({ ...movie, stars: stars });
@@ -29,10 +46,10 @@ export default function UpdateMovie(props) {
     axios
       .put(`http://localhost:5000/api/movies/${movie.id}`, movie)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         props.setMovies([
-          ...props.movies.filter(el => el.id !== movie.id),
           res.data,
+          ...props.movies.filter(el => el.id !== movie.id),
         ]);
         // axios
         //   .get('http://localhost:5000/api/movies')
@@ -76,7 +93,7 @@ export default function UpdateMovie(props) {
             value={movie.metascore}
           />
         </label>
-        {/* <p>Actors:</p> */}
+        <p>Actors:</p>
         {/* {stars &&
           stars.map(el => (
             <input
@@ -86,24 +103,27 @@ export default function UpdateMovie(props) {
               onChange={handleChangeActor}
             />
           ))} */}
-        {/* <input
+        <input
           type='text'
           name='firststar'
-          onChange={handleChangeActor}
-          placeholder={stars[0]}
+          onChange={e => setFirstStar(e.target.value)}
+          value={firstStar}
         />
         <input
           type='text'
           name='secondstar'
-          onChange={handleChangeActor}
-          placeholder={stars[1]}
+          onChange={e => setSecondStar(e.target.value)}
+          value={secondStar}
         />
         <input
           type='text'
           name='thirdstar'
-          onChange={handleChangeActor}
-          placeholder={stars[2]}
-        /> */}
+          onChange={e => setThirdStar(e.target.value)}
+          value={thirdStar}
+        />
+        <button className='button' onClick={handleSetActors}>
+          Set Actors
+        </button>
         <button className='button'>Update Movie</button>
       </form>
     </div>
